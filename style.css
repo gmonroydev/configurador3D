@@ -1,0 +1,29 @@
+body{
+    margin: 0%;
+    padding: 0%;
+    width: 100vw;
+    height: 100vh;
+}
+
+main{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+canvas{
+    width: 70%;
+    height: 100%;
+    background-color: bisque;
+}
+
+div{
+    width: 30%;
+    height: 100%;
+    background-color: aliceblue;
+}
+
+img{
+    height: 50px;
+    width: 50px;
+}

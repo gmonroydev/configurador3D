@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+    
+    <head>
+        <meta charset="UTF-8"/>
+        <title> Configurador 3D </title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <header></header>
+        <main id="container">
+            <canvas id="tjsCanvas"></canvas>
+            <div>
+                <fieldset>
+                    <legend> Dimensiones </legend>
+                    Alto
+                    <button id="incHeigth"> + </button>
+                    <button id="decHeigth"> - </button>
+                    Largo
+                    <button id="incLenght"> + </button>
+                    <button id="decLenght"> - </button>
+                    Ancho
+                    <button id="incWidth"> + </button>
+                    <button id="decWidth"> - </button>
+                </fieldset>
+                <fieldset>
+                    <legend> Material </legend>
+                    <label> 
+                        <input name="slcMaterial" type="radio" value="pine" checked>
+                        Pino
+                    </label>
+                    <img src="textures/pino.jpg" alt="Pino">
+                    <label>
+                        <input name="slcMaterial" type="radio" value="cedar">
+                        Cedro
+                    </label>    
+                    <img src="textures/cedro.png" alt="Cedro">
+                    <label>
+                        <input name="slcMaterial" type="radio" value="mahogany">
+                        Caoba
+                    </label>
+                    <img src="textures/caoba.jpg" alt="Caoba">
+                </fieldset>
+                <fieldset>
+                    <legend> Acabado </legend>
+                    <label>
+                        <input name="slcFinished" type="radio" value="varnish" checked>
+                        Barnizado
+                    </label>
+                    <input id="slcVarnish" type="color" value="#ffffff" checked>
+                    <label>
+                        <input name="slcFinished" type="radio" value="paint">
+                        Pintado
+                    </label>
+                    <input id="slcPaint" type="color" value="#ffffff">
+                    
+                </fieldset>
+                <fieldset>
+                    <legend> Cajones </legend>
+                    Cantidad de Cajones
+                    <button id="addShelf"> + </button>
+                    <button id="quitShelf"> - </button>
+                </fieldset>
+            </div>
+        </main>
+        <script type="importmap">
+            {
+                "imports": {
+                        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+                }
+            }
+        </script>
+        <script type="module" src="script.js"></script>
+    </body>
+
+</html>
