@@ -5,62 +5,102 @@
         <meta charset="UTF-8"/>
         <title> Configurador 3D </title>
         <link rel="stylesheet" href="style.css">
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     </head>
 
     <body>
         <header></header>
-        <main id="container">
+        <main>
             <canvas id="tjsCanvas"></canvas>
-            <div>
+            <div class="controls">
                 <fieldset>
                     <legend> Dimensiones </legend>
-                    Alto
-                    <button id="incHeigth"> + </button>
-                    <button id="decHeigth"> - </button>
-                    Largo
-                    <button id="incLenght"> + </button>
-                    <button id="decLenght"> - </button>
-                    Ancho
-                    <button id="incWidth"> + </button>
-                    <button id="decWidth"> - </button>
+                    <div class="menu-element">
+                        <p class="txt-dim"> Alto (cm) </p>
+                        <div class="container">
+                            <button id="incHeigth"> + </button>
+                            <input class="input-cm" id="inputY" type="text">
+                            <button id="decHeigth"> - </button>
+                        </div>
+                    </div>
+                    <div class="menu-element">
+                        <p class="txt-dim"> Largo (cm) </p>
+                        <div class="container">
+                            <button id="incLenght"> + </button>
+                            <input class="input-cm" id="inputX" type="text">
+                            <button id="decLenght"> - </button>
+                        </div>
+                    </div>
+                    <div class="menu-element">
+                        <p class="txt-dim"> Ancho (cm) </p>
+                        <div class="container">
+                            <button id="incWidth"> + </button>
+                            <input class="input-cm" id="inputZ" type="text">
+                            <button id="decWidth"> - </button>
+                        </div>
+                    </div>
                 </fieldset>
+                
                 <fieldset>
                     <legend> Material </legend>
-                    <label> 
-                        <input name="slcMaterial" type="radio" value="pine" checked>
-                        Pino
-                    </label>
-                    <img src="textures/pino.jpg" alt="Pino">
-                    <label>
-                        <input name="slcMaterial" type="radio" value="cedar">
-                        Cedro
-                    </label>    
-                    <img src="textures/cedro.png" alt="Cedro">
-                    <label>
-                        <input name="slcMaterial" type="radio" value="mahogany">
-                        Caoba
-                    </label>
-                    <img src="textures/caoba.jpg" alt="Caoba">
-                </fieldset>
-                <fieldset>
-                    <legend> Acabado </legend>
-                    <label>
-                        <input name="slcFinished" type="radio" value="varnish" checked>
-                        Barnizado
-                    </label>
-                    <input id="slcVarnish" type="color" value="#ffffff" checked>
-                    <label>
-                        <input name="slcFinished" type="radio" value="paint">
-                        Pintado
-                    </label>
-                    <input id="slcPaint" type="color" value="#ffffff">
+                    
+                    <div class="container">
+                        <label> 
+                            <input name="slcMaterial" type="radio" value="pine" checked>
+                            <p class="txt-mat"> Pino </p>
+                        </label>
+                        <img src="textures/pino.jpg" alt="Pino">
+                    </div>
+                    
+                    <div class="container">
+                        <label>
+                            <input name="slcMaterial" type="radio" value="cedar">
+                            <p class="txt-mat"> Cedro </p>
+                        </label>    
+                        <img src="textures/cedro.png" alt="Cedro">
+                    </div>
+                    
+                    <div class="container">
+                        <label>
+                            <input name="slcMaterial" type="radio" value="mahogany">
+                            <p class="txt-mat"> Caoba </p>
+                        </label>
+                        <img src="textures/caoba.jpg" alt="Caoba">
+                    </div>
                     
                 </fieldset>
+                
+                <fieldset>
+                    <legend> Acabado </legend>
+                    <div class="container">
+                        <label>
+                            <input name="slcFinished" type="radio" value="varnish" checked>
+                            <p class="txt-fin"> Barnizado </p>
+                        </label>
+                        <input class="slc-color" id="slcVarnish" type="color" value="#ffffff" checked>
+                    </div>
+                    
+                    <div class="container">
+                        <label>
+                            <input name="slcFinished" type="radio" value="paint">
+                            <p class="txt-fin"> Pintado </p>
+                        </label>
+                        <input class="slc-color" id="slcPaint" type="color" value="#ffffff">
+                    </div>
+                    
+                </fieldset>
+
                 <fieldset>
                     <legend> Cajones </legend>
-                    Cantidad de Cajones
-                    <button id="addShelf"> + </button>
-                    <button id="quitShelf"> - </button>
+                    <div class="menu-element">
+                        <p class="txt-shl"> Cantidad </p>
+                        <div class="container">
+                            <button id="addShelf"> + </button>
+                            <input class="input-n" id="nShelf" type="text">
+                            <button id="quitShelf"> - </button>
+                        </div>
+                    </div>
                 </fieldset>
             </div>
         </main>
