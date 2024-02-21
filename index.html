@@ -17,7 +17,7 @@
                 <fieldset>
                     <legend> Dimensiones </legend>
                     <div class="menu-element">
-                        <p class="txt-dim"> Alto (cm) </p>
+                        <p class="txt-dim"> Alto (50-200cm) </p>
                         <div class="container">
                             <button id="incHeigth"> + </button>
                             <input class="input-cm" id="inputY" type="text">
@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <div class="menu-element">
-                        <p class="txt-dim"> Largo (cm) </p>
+                        <p class="txt-dim"> Largo (50-250cm) </p>
                         <div class="container">
                             <button id="incLenght"> + </button>
                             <input class="input-cm" id="inputX" type="text">
@@ -33,7 +33,7 @@
                         </div>
                     </div>
                     <div class="menu-element">
-                        <p class="txt-dim"> Ancho (cm) </p>
+                        <p class="txt-dim"> Ancho (20-50cm) </p>
                         <div class="container">
                             <button id="incWidth"> + </button>
                             <input class="input-cm" id="inputZ" type="text">
@@ -47,7 +47,7 @@
                     
                     <div class="container">
                         <label> 
-                            <input name="slcMaterial" type="radio" value="pine" checked>
+                            <input class="input-rdo" name="slcMaterial" type="radio" value="pine" checked>
                             <p class="txt-mat"> Pino </p>
                         </label>
                         <img src="textures/pino.jpg" alt="Pino">
@@ -55,7 +55,7 @@
                     
                     <div class="container">
                         <label>
-                            <input name="slcMaterial" type="radio" value="cedar">
+                            <input class="input-rdo" name="slcMaterial" type="radio" value="cedar">
                             <p class="txt-mat"> Cedro </p>
                         </label>    
                         <img src="textures/cedro.png" alt="Cedro">
@@ -63,7 +63,7 @@
                     
                     <div class="container">
                         <label>
-                            <input name="slcMaterial" type="radio" value="mahogany">
+                            <input class="input-rdo" name="slcMaterial" type="radio" value="mahogany">
                             <p class="txt-mat"> Caoba </p>
                         </label>
                         <img src="textures/caoba.jpg" alt="Caoba">
@@ -75,7 +75,7 @@
                     <legend> Acabado </legend>
                     <div class="container">
                         <label>
-                            <input name="slcFinished" type="radio" value="varnish" checked>
+                            <input class="input-rdo" name="slcFinished" type="radio" value="varnish" checked>
                             <p class="txt-fin"> Barnizado </p>
                         </label>
                         <input class="slc-color" id="slcVarnish" type="color" value="#ffffff" checked>
@@ -83,7 +83,7 @@
                     
                     <div class="container">
                         <label>
-                            <input name="slcFinished" type="radio" value="paint">
+                            <input class="input-rdo" name="slcFinished" type="radio" value="paint">
                             <p class="txt-fin"> Pintado </p>
                         </label>
                         <input class="slc-color" id="slcPaint" type="color" value="#ffffff">
@@ -92,7 +92,7 @@
                 </fieldset>
 
                 <fieldset>
-                    <legend> Cajones </legend>
+                    <legend> Repisas </legend>
                     <div class="menu-element">
                         <p class="txt-shl"> Cantidad </p>
                         <div class="container">

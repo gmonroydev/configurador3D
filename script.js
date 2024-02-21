@@ -3,8 +3,9 @@ import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 
 //************************************Parametros modificables*********************************************
 const panelwidth=2;//grueso de los paneles que conforman el mueble                                       *
-const totalISX=50,totalISY=100,totalISZ=50;//dimensiones del mueble                                      *
-const minX=30, maxX=200, minY=50, maxY=200, minZ=20, maxZ=100;//dimensiones minimas y maximas del mueble *
+const totalISX=50,totalISY=50,totalISZ=20;//dimensiones del mueble                                      *
+const minX=50, maxX=250, minY=50, maxY=200, minZ=20, maxZ=50;//dimensiones minimas y maximas del mueble *
+const shelfMinSize=10;//distancia minima entre repisas
 const modSize=2;//cuantas unidades se modifica la dimension con los botones de +-                        *
 //********************************************************************************************************
 const latpanISX=panelwidth, latpanISY=totalISY, latpanISZ=totalISZ;//dimensiones iniciales de los paneles laterales
@@ -39,6 +40,40 @@ bottomPanel.positionY*=-1;
 bottomPanel.direction=-1;
 //Los paneles que conforman el muble se almacenan en el arreglo "panels"
 let panels=[lateralPanel, lateralPanel2, topPanel, bottomPanel];
+
+//Inputs que muestran las medidas del mueble
+function checkSize(min,max,input){
+	if(min<=input && input<=max){
+		return true;
+	}
+	else{
+		alert("Error");
+	}
+}
+
+const inputSizeX=document.getElementById("inputX");
+inputSizeX.value=totalISX+scaleX;
+// inputSizeX.addEventListener("keypress",function(e){
+// 	if(e.key==="Enter"){
+// 		if(checkSize(minX,maxX,inputSizeX.value)===true){
+// 			// inputSizeX.value=inputSizeX;
+// 			scaleX=Math.abs(totalISX-inputSizeX.value);
+// 			changeSizeX(scaleX, 1);
+// 		}
+// 		else{
+// 			inputSizeX.value=totalISX;
+// 		}
+// 	}	
+// });
+
+const inputSizeY=document.getElementById("inputY");
+inputSizeY.value=totalISY+scaleY;
+
+const inputSizeZ=document.getElementById("inputZ");
+inputSizeZ.value=totalISZ+scaleZ;
+
+const inputShelves=document.getElementById("nShelf");
+inputShelves.value=nShelves;
 
 //Elementos de THREEJS
 //Scene
@@ -89,7 +124,7 @@ controls.zoomSpeed=2;
 
 //Funciones
 function init(){
-    scene.background=new THREE.Color(0xE7E7E7);
+    scene.background=new THREE.Color(0xF0E6EA);
     scene.add(directionalLight);
 	window.addEventListener('resize', onWindowResize, false);
 	renderer.setSize(window.innerWidth*0.7, window.innerHeight);//modifica el tamaño del objeto con respecto al tamaño de la ventana
@@ -122,10 +157,12 @@ function changeSizeX(sx, sign){
 		}
 		else{
 			panels[i].positionX+=((modSize*panels[i].direction)/2)*sign*0.92;
-			panelsMesh[i].position.x=panels[i].positionX
-			panelsLine[i].position.x=panels[i].positionX
+			// panels[i].positionX+=(panels[i].direction*sign);
+			panelsMesh[i].position.x=panels[i].positionX;
+			panelsLine[i].position.x=panels[i].positionX;
 		}
 	}
+	inputSizeX.value=totalISX+sx;
 }
 
 function changeSizeY(sy, sign){
@@ -141,6 +178,7 @@ function changeSizeY(sy, sign){
 			positionShelves();
 		}	
 	}
+	inputSizeY.value=totalISY+sy;
 }
 
 function changeSizeZ(sz, sign){
@@ -148,6 +186,7 @@ function changeSizeZ(sz, sign){
 		panelsMesh[i].scale.z=(totalISZ+sz)/totalISZ;
 		panelsLine[i].scale.z=(totalISZ+sz)/totalISZ;
 	}
+	inputSizeZ.value=totalISZ+sz;
 }
 
 function positionShelves(){
@@ -227,44 +266,95 @@ rdobtnVarnish.addEventListener("input", changeColor)
 
 const btnIncH=document.getElementById("incHeigth");
 btnIncH.addEventListener("click", ()=>{
-	changeSizeY(scaleY+=modSize, 1)
+	scaleY+=modSize;
+	if(checkSize(minY, maxY, totalISY+scaleY)===true){
+		changeSizeY(scaleY, 1);
+	}
+	else{
+		scaleY-=modSize;
+	}
 });
 
 const btnDecH=document.getElementById("decHeigth");
 btnDecH.addEventListener("click", ()=>{
-	changeSizeY(scaleY-=modSize, -1)
+	scaleY-=modSize;
+	if(checkSize(minY, maxY, totalISY+scaleY)===true){
+		changeSizeY(scaleY, -1);
+	}
+	else{
+		scaleY+=modSize;
+	}
 });
 
 const btnIncL=document.getElementById("incLenght");
 btnIncL.addEventListener("click", ()=>{
-	changeSizeX(scaleX+=modSize, 1)
+	scaleX+=modSize;
+	if(checkSize(minX, maxX, totalISX+scaleX)===true){
+		changeSizeX(scaleX, 1);
+	}
+	else{
+		scaleX-=modSize;
+	}
 });
 
 const btnDecL=document.getElementById("decLenght");
 btnDecL.addEventListener("click", ()=>{
-	changeSizeX(scaleX-=modSize, -1)
+	scaleX-=modSize;
+	if(checkSize(minX, maxX, totalISX+scaleX)===true){
+		changeSizeX(scaleX, -1);
+	}
+	else{
+		scaleX+=modSize;
+	}
 });
 
 const btnIncW=document.getElementById("incWidth");
 btnIncW.addEventListener("click", ()=>{
-	changeSizeZ(scaleZ+=modSize, 1)
+	scaleZ+=modSize;
+	if(checkSize(minZ, maxZ, totalISZ+scaleZ)===true){
+		changeSizeZ(scaleZ, 1)
+	}
+	else{
+		scaleZ-=modSize;
+	}
 });
 
 const btnDecW=document.getElementById("decWidth");
 btnDecW.addEventListener("click", ()=>{
-	changeSizeZ(scaleZ-=modSize,-1)
+	scaleZ-=modSize;
+	if(checkSize(minZ, maxZ, totalISZ+scaleZ)===true){
+		changeSizeZ(scaleZ, -1)
+	}
+	else{
+		scaleZ+=modSize;
+	}
 });
 
 const btnAddShelf=document.getElementById("addShelf");
 btnAddShelf.addEventListener("click", ()=>{
 	nShelves+=1;
-	addShelf();
+	let maxShelves=(totalISY+scaleY-(2*panelwidth))/shelfMinSize;
+	if(nShelves<=maxShelves){
+		inputShelves.value=nShelves;
+		addShelf();
+	}
+	else{
+		nShelves-=1;
+		alert("No se pueden agregar más repisas, intente incrementar la altura del mueble");
+	}
 });
 
 const btnQuitShelf=document.getElementById("quitShelf");
 btnQuitShelf.addEventListener("click", ()=>{
 	nShelves-=1;
-	quitShelf();
+	if(nShelves>=0){
+		inputShelves.value=nShelves;
+		quitShelf();
+	}
+	else{
+		nShelves+=1;
+		alert("No quedan más repisas");
+	}
 });
 
 const rdobtnWood=document.querySelectorAll("input[name='slcMaterial']");

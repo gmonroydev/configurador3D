@@ -4,11 +4,13 @@ body{
     width: 100vw;
     height: 100vh;
     font-family: 'Montserrat', sans-serif;
+    color: rgb(37, 37, 37);
 }
 
 legend{
     font-size: 1.2rem;
     letter-spacing: 0.1rem;
+    font-weight: 600;
 }
 
 main{
@@ -20,14 +22,12 @@ main{
 canvas{
     width: 70%;
     height: 100%;
-    background-color: rgb(177, 128, 68);
 }
 
 .controls{
     width: 30%;
     height: 100%;
-    background-color: aliceblue;
-    align-items: center;
+    background-color: rgb(240, 230, 234);
 }
 
 label{
@@ -47,11 +47,23 @@ img{
 
 p{
     font-size: 0.9rem;
+    font-weight: 400;
     text-align: center;
 }
 
+.input-rdo{
+    background-color: rgb(61, 61, 78);
+    transform: scale(1.5);
+    accent-color: aliceblue;
+}
+
+.input-rdo:hover{
+    transform: scale(1.7);
+
+}
+
 .txt-dim{
-    width: 115px;
+    width: 130px;
 }
 
 .txt-mat{
@@ -70,6 +82,7 @@ p{
     width: 50px;
     height: 50px;
     border-radius: 10%;
+    background-color: rgb(61, 61, 78);
 }
 
 .menu-element{
@@ -80,14 +93,20 @@ p{
     width: 30px;
     height: 24px;
     font-size: .9rem;
+    font-weight: bold;
     text-align: center;
+    color: aliceblue;
+    background-color: rgb(61, 61, 78);
 }
 
 .input-cm{
-    width: 50px;
+    width: 57px;
     height: 24px;
     font-size: .9rem;
+    font-weight: bold;
     text-align: center;
+    color: aliceblue;
+    background-color: rgb(61, 61, 78);
 }
 
 fieldset{
@@ -102,6 +121,13 @@ button{
     text-align: center;
     font-size: 1rem;
     font-weight: bolder;
+    color: aliceblue;
+    background-color: rgb(69, 69, 85);
+}
+
+button:hover{
+    transform: scale(1.05);
+    background-color: rgb(83, 83, 97);
 }
 
 @media(max-width:1670px){
@@ -117,10 +143,10 @@ button{
         display: block;
     } */
 
-    canvas{
+    /* canvas{
         width: 60%;
         height: 60%;
-    }
+    } */
 
     /* div{
         width: 100%;
