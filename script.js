@@ -3,7 +3,7 @@ import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 
 //************************************Parametros modificables*********************************************
 const panelwidth=2;//grueso de los paneles que conforman el mueble                                       *
-const totalISX=50,totalISY=50,totalISZ=20;//dimensiones del mueble                                      *
+const totalISX=60,totalISY=90,totalISZ=30;//dimensiones del mueble                                      *
 const minX=50, maxX=250, minY=50, maxY=200, minZ=20, maxZ=50;//dimensiones minimas y maximas del mueble *
 const shelfMinSize=10;//distancia minima entre repisas
 const modSize=2;//cuantas unidades se modifica la dimension con los botones de +-                        *
@@ -30,8 +30,8 @@ class Panel{
 }
 
 //Creacion de los cuatro paneles que conforman la estructura basica del mueble
-const lateralPanel=new Panel((totalISX/2)-(panelwidth/2),0,0,latpanISX,latpanISY,latpanISZ,"wood",0x1E88E5,1);
-const topPanel=new Panel(0,(totalISY/2)-(panelwidth/2),0,shelfISX,shelfISY,shelfISZ,"wood",0x1E88E5,1); 
+const lateralPanel=new Panel((totalISX/2)-(panelwidth/2),0,0,latpanISX,latpanISY,latpanISZ,"wood",0xE6E2C5,1);
+const topPanel=new Panel(0,(totalISY/2)-(panelwidth/2),0,shelfISX,shelfISY,shelfISZ,"wood",0xE6E2C5,1); 
 const lateralPanel2={...lateralPanel};//se crea el segundo panel lateral cloando el primero
 lateralPanel2.positionX*=-1;//se asigna al segundo panel direccion negativa para que aparezca en el lado opuesto al primero
 lateralPanel2.direction=-1;
@@ -73,7 +73,7 @@ const inputSizeZ=document.getElementById("inputZ");
 inputSizeZ.value=totalISZ+scaleZ;
 
 const inputShelves=document.getElementById("nShelf");
-inputShelves.value=nShelves;
+inputShelves.value=2;
 
 //Elementos de THREEJS
 //Scene
@@ -110,12 +110,16 @@ for(let panel of panels){
 }
 //Camera
 const camera=new THREE.PerspectiveCamera(90, window.innerWidth*0.7/window.innerHeight, 0.1, 1000);
-camera.position.z=300;
+camera.position.z=100;
 //Renderer
 const renderer=new THREE.WebGLRenderer({canvas:tjsCanvas, antialias:true});
 //Light
 const directionalLight=new THREE.DirectionalLight(0xffffff, 2.7)
 directionalLight.position.copy(camera.position);
+
+const ambientLight=new THREE.AmbientLight( 0x404040 );
+ambientLight.intensity=9;
+
 //Controls
 const controls=new OrbitControls(camera, renderer.domElement);
 controls.minDistance=50;
@@ -126,6 +130,7 @@ controls.zoomSpeed=2;
 function init(){
     scene.background=new THREE.Color(0xF0E6EA);
     scene.add(directionalLight);
+	scene.add(ambientLight);
 	window.addEventListener('resize', onWindowResize, false);
 	renderer.setSize(window.innerWidth*0.7, window.innerHeight);//modifica el tamaño del objeto con respecto al tamaño de la ventana
     renderer.shadowMapEnabled=true;
@@ -231,28 +236,39 @@ function updateTexture(nTexture){
 	}
 }
 
+
 function changeWood(e){
 	if(this.checked){
 		if(this.value==="pine"){
 			selectedWood=0;
-			updateTexture(0);
+			if(rdobtnVarnish.disabled==false){
+				updateTexture(0);
+			}
 		}
 		else if(this.value==="cedar"){
 			selectedWood=1;
-			updateTexture(1);
+			if(rdobtnVarnish.disabled==false){
+				updateTexture(1);
+			}
 		}
 		else if(this.value==="mahogany"){
 			selectedWood=2;
-			updateTexture(2);
+			if(rdobtnVarnish.disabled==false){
+				updateTexture(2);
+			}
 		}
 	}
 }
 
 function changeFinished(e){
 	if(this.value==="varnish"){
+		rdobtnPaint.disabled=true;
+		rdobtnVarnish.disabled=false;
 		updateTexture(selectedWood);
 	}
 	else if(this.value==="paint"){
+		rdobtnPaint.disabled=false;
+		rdobtnVarnish.disabled=true;
 		updateTexture(3);
 	}
 }
@@ -369,3 +385,9 @@ for (const radioButton of rdobtnFinished){
 
 init();
 animate();
+rdobtnVarnish.disabled=false;
+rdobtnPaint.disabled=true;
+for(let i=0; i<2; i++){
+	nShelves+=1;
+	addShelf();
+};

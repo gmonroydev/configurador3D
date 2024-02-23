@@ -92,6 +92,7 @@ p{
 .input-n{
     width: 30px;
     height: 24px;
+    padding-top: 6px;
     font-size: .9rem;
     font-weight: bold;
     text-align: center;
@@ -102,6 +103,7 @@ p{
 .input-cm{
     width: 57px;
     height: 24px;
+    padding-top: 6px;
     font-size: .9rem;
     font-weight: bold;
     text-align: center;
@@ -138,18 +140,4 @@ button:hover{
     .container{
         margin-bottom: 20px;
     }
-
-    /* main{
-        display: block;
-    } */
-
-    /* canvas{
-        width: 60%;
-        height: 60%;
-    } */
-
-    /* div{
-        width: 100%;
-        height: 40%;
-    } */
 } 
