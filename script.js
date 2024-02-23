@@ -46,8 +46,11 @@ function checkSize(min,max,input){
 	if(min<=input && input<=max){
 		return true;
 	}
-	else{
-		alert("Error");
+	else if(input<min){
+		alert(`La dimensión no puede se menor de ${min}cm`);
+	}
+	else if(input>max){
+		alert(`La dimensión no puede se mayor de ${max}cm`);
 	}
 }
 
@@ -148,9 +151,20 @@ function animate(){
 	renderer.render(scene, camera);
 }
 
-function changeColor(e){
+// function changeColor(e){
+// 	for(let panelMesh of panelsMesh){
+// 		panelMesh.material.color.set(e.target.value);
+// 	}
+// }
+
+function changeColor(){
 	for(let panelMesh of panelsMesh){
-		panelMesh.material.color.set(e.target.value);
+		if(rdobtnPaint.disabled==false){
+			panelMesh.material.color.set(rdobtnPaint.value);
+		}
+		else if(rdobtnVarnish.disabled==false){
+			panelMesh.material.color.set(rdobtnVarnish.value);
+		}
 	}
 }
 
@@ -236,7 +250,6 @@ function updateTexture(nTexture){
 	}
 }
 
-
 function changeWood(e){
 	if(this.checked){
 		if(this.value==="pine"){
@@ -264,21 +277,23 @@ function changeFinished(e){
 	if(this.value==="varnish"){
 		rdobtnPaint.disabled=true;
 		rdobtnVarnish.disabled=false;
+		changeColor();
 		updateTexture(selectedWood);
 	}
 	else if(this.value==="paint"){
 		rdobtnPaint.disabled=false;
 		rdobtnVarnish.disabled=true;
+		changeColor();
 		updateTexture(3);
 	}
 }
 
 //Controles para mofificar el objeto
 const rdobtnPaint=document.getElementById("slcPaint");
-rdobtnPaint.addEventListener("input", changeColor)
+rdobtnPaint.addEventListener("input", changeColor);
 
 const rdobtnVarnish=document.getElementById("slcVarnish");
-rdobtnVarnish.addEventListener("input", changeColor)
+rdobtnVarnish.addEventListener("input", changeColor);
 
 const btnIncH=document.getElementById("incHeigth");
 btnIncH.addEventListener("click", ()=>{
